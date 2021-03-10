@@ -1,0 +1,110 @@
+
+class linear_probing:
+    def __init__(self, n):
+        entry = [0, ""]
+        self.hash_table = [entry for i in range(n)]
+        self.n=n
+        
+    def insert(self,phone,name):
+        "This function inserts into hash table using linear probing"
+        for i in range(0,self.n):
+            index=(phone+1)%self.n 
+            if self.hash_table[index]==[0, ""]:
+                self.hash_table[index]=[phone,name]
+                break
+            else:
+                continue
+        
+    def find(self, phone):
+        print("Search using linear probing")
+        comparisions=0
+        for i in range(0,self.n):
+            index = (phone+i)%self.n
+            comparisions += 1
+            if self.hash_table[index][0] == phone:
+                print("Phone no:",self.hash_table[index][0])
+                print("Name:",self.hash_table[index][1])
+                print("Comparisions required:",comparisions)
+                break
+            else:
+                continue
+            print()
+            
+    def print_hashtable(self):
+        print("Hash table using linear probing")
+        for i in range(self.n):
+            print(self.hash_table[i][0],"->",self.hash_table[i][1])
+            
+class quadratic_probing:
+    def __init__(self,n):
+        entry=[0,""]
+        self.hash_table=[entry for i in range(n)]
+        self.n=n
+        
+    def insert(self,phone,name):
+        "This inserts into hash table using qudratic probing"
+        for i in range(0,self.n):
+            index=(phone+i*i)%self.n 
+            if self.hash_table[index]==[0,""]:
+                self.hash_table[index] = [phone,name]
+                break
+            else:
+                continue
+            
+    def find(self,phone):
+        print("Search using quadratic probing")
+        comparisons  = 0
+        for i in range(0,self.n):
+            index=(phone+i*i)%self.n
+            comparisons += 1
+            if self.hash_table[index][0] == phone:
+                print("Phone no:",self.hash_table[index][0])
+                print("Name:",self.hash_table[index][1])
+                print("Comparisions required:", comparisons)
+                break
+            else:
+                continue
+            print()
+            
+    def print_hashtable(self):
+        print("Hash table using quadratic probing")
+        for i in range(self.n):
+            print(self.hash_table[i][0],"->",self.hash_table[i][1])
+        print()
+        
+if __name__  ==  "__main__":
+    n=10
+    
+    data = [
+        [7894682399,"aa"],
+        [7845238900,"bb"],
+        [7384956328,"cc"],
+        [7844793627,"dd"],
+        [7124365894,"ee"],
+        [7489684732,"ff"],
+        [7355632789,"gg"],
+        [76689573547,"hh"],
+        [7611347893,"ii"],
+        [7325861216,"jj"],
+    ]
+    
+    hl=linear_probing(n)
+    
+    for i in range(n): 
+        hl.insert(data[i][0],data[i][1])
+    
+    hl.print_hashtable()
+    hl.find(7611347893)
+    
+
+    hq=quadratic_probing(n)
+    
+    for i in range(n):
+
+    
+        hq.insert(data[i][0],data[i][1])
+    
+    hq.print_hashtable()
+    hq.find(7611347893)
+    
+    
